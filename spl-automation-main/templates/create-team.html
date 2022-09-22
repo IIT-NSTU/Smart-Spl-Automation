@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Team</title>
+
+
+    <style>
+        @media print {
+
+            .no-printme {
+                display: none;
+            }
+
+            .printme {
+                display: block;
+            }
+        }
+
+
+        button:hover {
+            cursor: pointer;
+            background-color: #de9393 !important;
+        }
+
+        table {
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+<h1>Create Team</h1>
+<div style="margin: 30px auto; width: 80%">
+    {% for team in teams %}
+        <h3>Team : {{ forloop.counter }}</h3>
+        <div style="line-height: 4px;">
+            <h4>Mentor : {{ team.mentor.user.firstname }} {{ team.mentor.user.lastname }} ({{ team.mentor.designation }})</h4>
+            <h4>Students :</h4>
+        </div>
+
+        <ul>
+            {% for student in team.students %}
+                <li>{{ student.user.firstname }} {{ student.user.lastname }} [CGPA : {{ student.cgpa  }}]</li>
+            {% endfor %}
+
+        </ul>
+
+    {% endfor %}
+
+
+</div>
+
+
+<div style="text-align: center;
+    height: 60px;" class="no-printme">
+    <button style="height: 40px;
+        border-radius: 15px;
+        margin-top: 10px;
+        background-color: gray;
+        color: white;" class="no-printme" style="" onclick={window.print()}>Download
+    </button>
+</div>
+</body>
+
+</html>
